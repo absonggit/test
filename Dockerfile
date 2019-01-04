@@ -1,2 +1,2 @@
 FROM nginx
-RUN echo '<h1>v18</h1>' > /usr/share/nginx/html/index.html
+RUN echo '<h1>v19</h1>' > /usr/share/nginx/html/index.html
