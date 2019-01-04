@@ -1,0 +1,10 @@
+version: "3"
+services:
+  web:
+    image: 2.2.2.11/test/nginx
+    deploy:
+      replicas: 2
+      restart_policy:
+        condition: on-failure
+    ports:
+      - "8889:80"
