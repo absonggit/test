@@ -1,0 +1,28 @@
+# db.yaml
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: deis-database
+  namespace: deis
+  labels:
+    heritage: deis
+spec:
+  replicas: 1
+  selector:
+    app: deis-database
+  template:
+    metadata:
+      labels:
+        app: deis-database
+    spec:
+      serviceAccount: deis-database
+      containers:
+        - name: deis-database
+          image: {{.Values.imageRegistry}}/postgres:{{.Values.dockerTag}}
+          imagePullPolicy: {{.Values.pullPolicy}}
+          ports:
+            - containerPort: 5432
+          env:
+            - name: DATABASE_STORAGE
+              value: {{default "minio" .Values.storage}}
+
