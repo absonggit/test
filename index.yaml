@@ -1,8 +1,33 @@
 apiVersion: v1
 entries:
+  mysql:
+  - appVersion: 5.7.14
+    created: 2019-01-25T11:41:26.938678306+08:00
+    description: Fast, reliable, scalable, and easy to use open-source relational
+      database system.
+    digest: 63a1ffafcb6d017be2760646997584872455dd3e2b5b2c7ca9fececba6c08e39
+    engine: gotpl
+    home: https://www.mysql.com/
+    icon: https://www.mysql.com/common/logos/logo-mysql-170x115.png
+    keywords:
+    - mysql
+    - database
+    - sql
+    maintainers:
+    - email: o.with@sportradar.com
+      name: olemarkus
+    - email: viglesias@google.com
+      name: viglesiasce
+    name: mysql
+    sources:
+    - https://github.com/kubernetes/charts
+    - https://github.com/docker-library/mysql
+    urls:
+    - mysql-0.13.1.tgz
+    version: 0.13.1
   nginx-ingress:
   - appVersion: 0.21.0
-    created: 2019-01-25T10:45:23.168594499+08:00
+    created: 2019-01-25T11:41:26.940302379+08:00
     description: An nginx Ingress controller that uses ConfigMap to store the nginx
       configuration.
     digest: f9a5198017377cf0a2bbb75c59edfddc7f6e8a6e994f0d072575c0659c7fa17c
@@ -23,4 +48,29 @@ entries:
     urls:
     - nginx-ingress-1.1.5.tgz
     version: 1.1.5
-generated: 2019-01-25T10:45:23.166333676+08:00
+  wordpress:
+  - appVersion: 5.0.3
+    created: 2019-01-25T11:41:26.942774306+08:00
+    description: Web publishing platform for building blogs and websites.
+    digest: 3fb906523d6079b10438ab0b60a5c7e3dccde8c2ab51fb67e1a2f4cf57ba169b
+    engine: gotpl
+    home: http://www.wordpress.com/
+    icon: https://bitnami.com/assets/stacks/wordpress/img/wordpress-stack-220x234.png
+    keywords:
+    - wordpress
+    - cms
+    - blog
+    - http
+    - web
+    - application
+    - php
+    maintainers:
+    - email: containers@bitnami.com
+      name: Bitnami
+    name: wordpress
+    sources:
+    - https://github.com/bitnami/bitnami-docker-wordpress
+    urls:
+    - wordpress-5.1.2.tgz
+    version: 5.1.2
+generated: 2019-01-25T11:41:26.934551708+08:00
