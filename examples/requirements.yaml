@@ -1,4 +1,0 @@
-dependencies:
-  - name: example
-    version: 1.2.3
-    repository: http://example.com/charts
