@@ -1,0 +1,57 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configmap.name }}
+  namespace: {{ .Values.namespace }} 
+data:
+  default.conf: "server {\n\n\tlisten 80;\n\tserver_name _;\n\n\troot /usr/share/nginx/html;\n
+    \   index index.html;\n    if ($request_method !~ ^(GET|HEAD|POST)$ ) {\n        return
+    403;\n    }\n\t\n    add_header 'Access-Control-Allow-Origin' '*';\n    add_header
+    'Access-Control-Allow-Credentials' 'true';\n    add_header 'Access-Control-Allow-Headers'
+    'Authorization,Content-Type,Accept,Origin,User-Agent,DNT,Cache-Control,X-Mx-ReqToken,X-Requested-With';\n
+    \   add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS';\n\t\n    location
+    / {\n        expires 30d;\n        try_files $uri $uri/ /index.html;\n    }\n
+    \   location ~* \\.(html)$ {\n        add_header Cache-Control \"no-cache, no-store\";\n
+    \   }\n\tlocation ~ ^/1.0/ {\n\t\t\tproxy_pass  http://zb_web_tomcat;\n\t\t\tproxy_set_header
+    Host $host;\n                        proxy_read_timeout 600s;\n                        proxy_send_timeout
+    600s;\n\t\t\tproxy_headers_hash_max_size 51200;\n\t\t\tproxy_headers_hash_bucket_size
+    6400;\n\t\t\tproxy_set_header X-Real-IP  $remote_addr;\n\t\t\tproxy_set_header
+    X-Forwarded-For $http_x_forwarded_for;\n\t\t\tproxy_set_header X-Forwarded-For
+    $proxy_add_x_forwarded_for;\n\t\t\tproxy_set_header Access-Control-Allow-Origin
+    $http_origin;\n\t}\n\tlocation ^~ /api/ {\n\t\t\tproxy_pass  http://zb_web_api;\n\t\t\tproxy_set_header
+    Host $host;\n\t\t\tproxy_headers_hash_max_size 51200;\n\t\t\tproxy_headers_hash_bucket_size
+    6400;\n\t\t\tproxy_set_header X-Real-IP  $remote_addr;\n\t\t\tproxy_set_header
+    X-Forwarded-For $http_x_forwarded_for;\n\t\t\tproxy_set_header X-Forwarded-For
+    $proxy_add_x_forwarded_for;\n\t\t\tproxy_set_header Access-Control-Allow-Origin
+    $http_origin;\n\t}\n\n}"
+  nginx.conf: "user nginx nginx;\nworker_processes auto;\n\nerror_log  /var/log/nginx/error.log
+    warn;\npid        /var/run/nginx.pid;\nworker_rlimit_nofile 51200;\n\nevents {\n
+    \   use epoll;\n    worker_connections 51200;\n    multi_accept on;\n    }\n\nhttp
+    {\n    server_names_hash_bucket_size 128;\n    server_names_hash_max_size 4112;\n
+    \   include mime.types;\n    default_type application/octet-stream;\n    large_client_header_buffers
+    4 32k;\n    client_max_body_size 1024m;\n    client_body_buffer_size 10m;\n    sendfile
+    off;\n    tcp_nopush on;\n    keepalive_timeout 120;\n    server_tokens off;\n
+    \   autoindex off;\n    tcp_nodelay on;\n\n    proxy_connect_timeout 600;\n    proxy_send_timeout
+    \  600;\n    proxy_read_timeout   600;\n    proxy_buffer_size 32k;\n    proxy_buffers
+    64 32k;\n    proxy_busy_buffers_size 1m;\n    proxy_temp_file_write_size 512k;\n
+    \   send_timeout 600s;\n\n    gzip on;\n    gzip_buffers 16 8k;\n    gzip_comp_level
+    6;\n    gzip_http_version 1.1;\n    gzip_min_length 256;\n    gzip_proxied any;\n
+    \   gzip_vary on;\n    gzip_types\n        text/xml application/xml application/atom+xml
+    application/rss+xml application/xhtml+xml image/svg+xml\n        text/javascript
+    application/javascript application/x-javascript\n        text/x-json application/json
+    application/x-web-app-manifest+json\n        text/css text/plain text/x-component\n
+    \       font/opentype application/x-font-ttf application/vnd.ms-fontobject\n        image/x-icon;\n
+    \   gzip_disable \"MSIE [1-6]\\.(?!.*SV1)\";\n\n    open_file_cache max=1000 inactive=20s;\n
+    \   open_file_cache_valid 30s;\n    open_file_cache_min_uses 2;\n    open_file_cache_errors
+    on;\n\n    log_format  main  '$http_x_forwarded_for - $remote_user [$time_local]
+    \"$request\" '\n                      '$status $body_bytes_sent \"$http_referer\"
+    '\n                      '\"$http_user_agent\" \"$http_x_forwarded_for\" '\n                      '$upstream_addr
+    $upstream_response_time $request_time';\n \n    access_log /var/log/nginx/access.log
+    main;\n\n    include /etc/nginx/conf.d/*.conf;\n    include /etc/nginx/conf.d/upstream;\n}"
+  upstream: |-
+    upstream zb_web_tomcat {
+        server zb-web-tomcat:8080;
+    }
+    upstream zb_web_api {
+        server 220.241.124.160:15002;
+    }

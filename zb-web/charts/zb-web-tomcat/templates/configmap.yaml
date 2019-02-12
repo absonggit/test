@@ -1,0 +1,186 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Values.configmap.name }}
+  namespace: {{ .Values.namespace }} 
+data:
+  config.properties: "# \\u6bcf\\u65e5\\u63d0\\u6b3e\\u6b21\\u6570\nCashoutTodayCount=2\n\n#
+    \\u6bcf\\u65e5\\u63d0\\u6b3e\\u989d\\u5ea6\\uff1b\nCashoutTodayAmount=500000\nCashoutSplitAmount=50000\nCRC_KEY=5eiYOobBCkbLAK4ijt4RwNMqXXhBrgioV2/tCtt+7kvQ4wmkeJ5diFZuV9Q2oo8ZFSHXXQcn2+SN4j/hKgDjMA==\n\nPAY_ONLINE_KEY=udsEL7bP/f/sufCbAUc+shAfvTciJH0FPahdZlWZfgRiOCva32sIs1+4q//zqBO9vaRFMbRGXplOwdZJlU1MxEZBvQ3mrXNrCZrtmQHDSHCouasLnH6c4yfJLjFAVr3QjZsccuM5XfZF+KoYM8H9bnFQ39CeLlp6F63y5UU7qpR7xDi9BST9x9Hpxe31Thxd\n\n#
+    ea_bbs IP\\u5730\\u5740\\uff0c\\u7528\\u4e8e\\u6743\\u9650\\u9a8c\\u8bc1;\\u53ef\\u8bbe\\u7f6e\\u591a\\u4e2aIP\\u5730\\u5740\\uff0c\\u591a\\u4e2aIP\\u5730\\u5740\\u7528\\u82f1\\u6587\\u9017\\u53f7\\u5206\\u9694\nea_bbs_ip=127.0.0.1,202.66.33.239\n\n#
+    ea_bbs \\u7684\\u767b\\u5f55\\u9a8c\\u8bc1\\u5730\\u5740\nea_bbs_forward=http\\://bbs.qybets.com/logging.do\n\n#
+    ea_bbs \\u4e3b\\u9875\\u5730\\u5740\nea_bbs_index=http\\://bbs.qybets.com/index.jsp\n\n#
+    ea_bbs \\u7528\\u6237\\u4fe1\\u606f\\u540c\\u6b65\\u5730\\u5740\nea_bbs_register=http\\://bbs.qybets.com/register.do\n\n#
+    ea_bbs \\u7528\\u6237\\u5bc6\\u7801\\u66f4\\u65b0\\u5730\\u5740\nbbs_modifyPassword_url=http\\://bbs.qybets.com/logging.do\n\n#
+    ea_bbs \\u7528\\u6237\\u6635\\u79f0\\u66f4\\u65b0\\u5730\\u5740\nbbs_modifyNickName_url=http\\://bbs.qybets.com/logging.do\n\nqy_bbs_index=http://bbs.qybets.com/forum.php\nqy_bbs_login=http://bbs.qybets.com/member.php\nqy_bbs_register=http://bbs.qybets.com/member.php\n\n#\n#
+    ================================================\n# * Discuz! Ucenter API for
+    JAVA\n# ================================================\n# UC comunication settings\n#
+    \ \n# \n#uc server url\nUC_API = http://bbs.qybets.com/uc_server\n#uc ip address\nUC_IP
+    = 127.0.0.1\n\n#key\nUC_KEY = K2SfSdH4p2B4taicI4ueKbb4yd5dpcO1f7wficq47bfewcffWbt23078t2l7T5i9\n\n#appid\nUC_APPID
+    = 1\n\n#connect mode: default value is \"\"\nUC_CONNECT = mysql\n#game\nSPORTBOOK_KEY=rhowPicPxq9iHN1qWR57ORWTiQNOwfXvjRahg5kaKik=\n\n#ptwebservice\npt_url
+    =https://game.nntisixsixsix.com\n\n#(1.\\u65f6\\u4ee3\\u4e92\\u80542.\\u81ea\\u5efa)\nSMS=1\n\n#多余的配置
+    但不可删除\nwebservice.long8publicWSurl=yRGwXSjHY9Nwqa2UaavIlzuksLa6E+XOLxI+nLRw6apqePFYvx+Cyw==\n\n######################################################\n#
+    可修改配置\n######################################################\n\n# webservice\n#
+    86.137\nwebservice.publicWSurl=t1UBS0hDaC+v2LezNSdyYnycO5efrInBO0oi50wCYdJ6asElU2KrdyZ7pytGDi8A\nwebservice.publicWSurl_1=lsiIkjCth8z/qz9gquVRUu2zBaTkR7gwwehVe4H8ifl7vFu4Sbe0zqTKiGrMWA6M\nwebservice.publicWSurl_2=EmH5VEIJ9UPRo7V22Lx9gATYUZbg/oYfG3VmacEzJh7N4cY4WD1yX/bQ9F0k9nBa\n\n#
+    86.139\n#webservice.publicWSurl=FDTrKJFBJE4RQYvT9+APPR9HjR66QS6G/DSTOVG3PX5ciorUGUhcv3b0eGwD+jG1\n#webservice.publicWSurl_1=IFtjPgAwoTUWgbjvrZH4e/ClF/e1rrpqZuM59qUj1zrDrQ0M+g5SVdv7LjOqWc4D\n#webservice.publicWSurl_2=KCe44DZ7wdXDZBjsgZjWVtuR/KvCPC2g0AUmpuu7dDf42G5GLmQ/ron5bX1Fr5XD\n\n#
+    middleservice\nmiddleservice.url=sBgkTRCGMItNdc4yCDSzPoh4dkTY/7Z+ZDMjFgSZWOzfhTKUcm//Xg==\nmiddleservice.url.pay=seBFYbeURur7Jyxo7SH85OVYX6ZWCQAifOr1iaXUtqtRHNVix2S7cA==\n\n#
+    red rain\nredrain.middle.url=http://220.241.124.239:10170\n\n# api\nproduct=zb\n#api.game.url=http://220.241.124.161:15202\n#api.game.url=http://210.193.50.53:15202\napi.game.url=https://zbgame.nntisixsixsix.com"
+  context.xml: "<?xml version='1.0' encoding='utf-8'?>\n<Context>\n    <WatchedResource>WEB-INF/web.xml</WatchedResource>\n
+    \   <Valve className=\"com.s.tomcat.redissessions.RedisSessionHandlerValve\"/>
+    \n    <Manager className=\"com.s.tomcat.redissessions.RedisSessionManager\"\n
+    \            host=\"zb-web-redis\"\n             password='gsmcredis'\n             port=\"6379\"\n
+    \            database=\"0\"\n             maxInactiveInterval=\"1200\"/>\n</Context>"
+  init.properties: |-
+    #version:1.0
+    #database connection
+    datasource.type=mysql
+    datasource.driverClassName=com.mysql.jdbc.Driver
+
+    datasource.url=jdbc\:mysql\://112.34.12.11\:3306/zbemail?useUnicode\=true&characterEncoding\=UTF-8
+    datasource.username=devuser
+    datasource.password=DGG35ds5sgDD41fj
+
+    datasource.maxActive=10
+    datasource.maxIdle=2
+    datasource.maxWait=120000
+    datasource.whenExhaustedAction=1
+    datasource.validationQuery=select 1 from dual
+    datasource.testOnBorrow=true
+    datasource.testOnReturn=false
+
+    #connection pool
+    c3p0.acquireIncrement=3
+    c3p0.initialPoolSize=1
+    c3p0.idleConnectionTestPeriod=900
+    c3p0.minPoolSize=1
+    c3p0.maxPoolSize=50
+    c3p0.maxStatements=100
+    c3p0.numHelperThreads=10
+    c3p0.maxIdleTime=6000
+
+    hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+    hibernate.jdbc.batch_size=25
+    hibernate.jdbc.fetch_size=50
+    hibernate.show_sql=false
+    hibernate.connection.release_mode=after_transaction
+
+    #dfh.remote.RemoteConstant
+    dfh.remote.RemoteConstant.HTTPS_HOST=mis.ea3-mission.com
+    #live 0 test 1
+    dfh.remote.RemoteConstant.isLiveEnv=0
+    #dfh.remote.RemoteConstant.isLiveEnv=1
+
+    #dfh.utils.Constant
+    dfh.utils.Constants.DEFAULT_CREDIT=5000
+    #minutes
+    dfh.utils.Constants.SYN_BETRECORDS_DELAY=60
+
+    #notify
+    notify.sms.vcpServer=sms.todaynic.com
+    notify.sms.vcpPort=20002
+    notify.sms.vcpUserID=ms31724
+    notify.sms.vcpPassword=mze3ot
+    notify.sms.emailServer=mail.qy8.us
+    notify.sms.emailPort=25
+    notify.sms.emailUser=cs@qy8.us
+    notify.sms.emailPassword=csqianyi88
+
+    # 2010.12.22
+    notify.sms.email.host.name=mail.qy8.us
+    notify.sms.email.port=25
+    notify.sms.email.user=cs@qy8.us
+    notify.sms.email.password=csqianyi88
+    notify.sms.email.transport.protocol=smtp
+    notify.sms.email.fromEmail=cs@qy8.us#version:1.0
+    #database connection
+    datasource.type=mysql
+    datasource.driverClassName=com.mysql.jdbc.Driver
+
+    datasource.url=jdbc\:mysql\://112.34.12.11\:3306/zbemail?useUnicode\=true&characterEncoding\=UTF-8
+    datasource.username=devuser
+    datasource.password=DGG35ds5sgDD41fj
+
+    datasource.maxActive=10
+    datasource.maxIdle=2
+    datasource.maxWait=120000
+    datasource.whenExhaustedAction=1
+    datasource.validationQuery=select 1 from dual
+    datasource.testOnBorrow=true
+    datasource.testOnReturn=false
+
+    #connection pool
+    c3p0.acquireIncrement=3
+    c3p0.initialPoolSize=1
+    c3p0.idleConnectionTestPeriod=900
+    c3p0.minPoolSize=1
+    c3p0.maxPoolSize=50
+    c3p0.maxStatements=100
+    c3p0.numHelperThreads=10
+    c3p0.maxIdleTime=6000
+
+    hibernate.dialect=org.hibernate.dialect.MySQLInnoDBDialect
+    hibernate.jdbc.batch_size=25
+    hibernate.jdbc.fetch_size=50
+    hibernate.show_sql=false
+    hibernate.connection.release_mode=after_transaction
+
+    #dfh.remote.RemoteConstant
+    dfh.remote.RemoteConstant.HTTPS_HOST=mis.ea3-mission.com
+    #live 0 test 1
+    dfh.remote.RemoteConstant.isLiveEnv=0
+    #dfh.remote.RemoteConstant.isLiveEnv=1
+
+    #dfh.utils.Constant
+    dfh.utils.Constants.DEFAULT_CREDIT=5000
+    #minutes
+    dfh.utils.Constants.SYN_BETRECORDS_DELAY=60
+
+    #notify
+    notify.sms.vcpServer=sms.todaynic.com
+    notify.sms.vcpPort=20002
+    notify.sms.vcpUserID=ms31724
+    notify.sms.vcpPassword=mze3ot
+    notify.sms.emailServer=mail.qy8.us
+    notify.sms.emailPort=25
+    notify.sms.emailUser=cs@qy8.us
+    notify.sms.emailPassword=csqianyi88
+
+    # 2010.12.22
+    notify.sms.email.host.name=mail.qy8.us
+    notify.sms.email.port=25
+    notify.sms.email.user=cs@qy8.us
+    notify.sms.email.password=csqianyi88
+    notify.sms.email.transport.protocol=smtp
+    notify.sms.email.fromEmail=cs@qy8.us
+  log4j.properties: "log4j.rootLogger=INFO,A1,stdout\n# log4j.rootLogger=WARN, stdout,
+    logfile\n\nlog4j.appender.stdout=org.apache.log4j.ConsoleAppender\nlog4j.appender.stdout.layout=org.apache.log4j.PatternLayout\nlog4j.appender.stdout.layout.ConversionPattern=%d
+    %p [%c] - %m%n\n\nlog4j.appender.A1=org.apache.log4j.DailyRollingFileAppender\nlog4j.appender.A1.File=../logs/elf_web.log\nlog4j.appender.A1.DatePattern='.'yyyy-MM-dd
+    \nlog4j.appender.A1.Append=true\nlog4j.appender.A1.layout=org.apache.log4j.PatternLayout\nlog4j.appender.A1.layout.ConversionPattern=%d
+    %5p (%c:%L) %n %m%n"
+  server.xml: "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n\n<Server port=\"8005\"
+    shutdown=\"SHUTDOWN\">\n  <Listener className=\"org.apache.catalina.startup.VersionLoggerListener\"
+    />\n\n  <Listener className=\"org.apache.catalina.core.AprLifecycleListener\"
+    SSLEngine=\"on\" />\n\n  <Listener className=\"org.apache.catalina.core.JreMemoryLeakPreventionListener\"
+    />\n  <Listener className=\"org.apache.catalina.mbeans.GlobalResourcesLifecycleListener\"
+    />\n  <Listener className=\"org.apache.catalina.core.ThreadLocalLeakPreventionListener\"
+    />\n\n\n  <GlobalNamingResources>\n \n    <Resource name=\"UserDatabase\" auth=\"Container\"\n
+    \             type=\"org.apache.catalina.UserDatabase\"\n              description=\"User
+    database that can be updated and saved\"\n              factory=\"org.apache.catalina.users.MemoryUserDatabaseFactory\"\n
+    \             pathname=\"conf/tomcat-users.xml\" />\n  </GlobalNamingResources>\n\n\n
+    \ <Service name=\"Catalina\">\n\n    <Connector port=\"8080\" protocol=\"HTTP/1.1\"\n
+    \              connectionTimeout=\"20000\" \n               maxThreads=\"30000\"\n
+    \              minSpareThreads=\"1000\"\n               acceptCount=\"3000\"           \n
+    \              maxHttpHeaderSize=\"8192\"\n               debug=\"0\"\n               disableUploadTimeout=\"true\"\n
+    \              enableLookups=\"false\"\n               compressableMimeType=\"text/html,text/xml,text/css,text/javascript,application/json,
+    application/x-javascript,application/javascript\" \n               compression=\"on\"
+    noCompressionUserAgents=\"gozilla, traviata\"\n               redirectPort=\"8443\"
+    \n               useBodyEncodingForURI=\"true\" URIEncoding=\"UTF-8\" />\n\n    <Engine
+    name=\"Catalina\" defaultHost=\"localhost\">\n\n      <Realm className=\"org.apache.catalina.realm.LockOutRealm\">\n
+    \ \n        <Realm className=\"org.apache.catalina.realm.UserDatabaseRealm\"\n
+    \              resourceName=\"UserDatabase\"/>\n      </Realm>\n\n      <Host
+    name=\"localhost\"  appBase=\"\" deployOnStartup=\"false\" deployXML=\"false\"\n
+    \           unpackWARs=\"true\" autoDeploy=\"false\"\n            xmlValidation=\"false\"
+    xmlNamespaceAware=\"false\">\n\n        <Context path=\"\" docBase=\"webapps/CODE\"
+    debug=\"0\" reloadable=\"false\" />\n  \n        <Valve className=\"org.apache.catalina.valves.AccessLogValve\"
+    directory=\"logs\"\n               prefix=\"localhost_access_log\" suffix=\".txt\"\n
+    \              pattern=\"%h %l %u %t &quot;%r&quot; %s %b\" />\n      </Host>\n
+    \   </Engine>\n  </Service>\n</Server>"

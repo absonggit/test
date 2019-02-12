@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: {{ .Values.namespace }}
+  name: {{ .Values.service.name }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: {{ .Values.service.name }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: {{ .Values.service.name }}
+    spec:
+      containers:
+      - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        name: {{ .Chart.Name }}
+        ports:
+        - containerPort: 8080
+          name: 8080tcp01
+          protocol: TCP
+        volumeMounts:
+        - mountPath: /usr/local/tomcat/webapps/CODE/WEB-INF/classes/config.properties
+          name: vol1
+          subPath: config.properties
+        - mountPath: /usr/local/tomcat/webapps/CODE/WEB-INF/classes/init.properties
+          name: vol1
+          subPath: init.properties
+        - mountPath: /usr/local/tomcat/webapps/CODE/WEB-INF/classes/log4j.properties
+          name: vol1
+          subPath: log4j.properties
+        - mountPath: /usr/local/tomcat/conf/context.xml
+          name: vol1
+          subPath: context.xml
+        - mountPath: /usr/local/tomcat/conf/server.xml
+          name: vol1
+          subPath: server.xml
+      volumes:
+      - configMap:
+          defaultMode: 256
+          name: {{ .Values.configmap.name }}
+          optional: false
+        name: vol1
