@@ -2,7 +2,7 @@ apiVersion: v1
 entries:
   mysql:
   - appVersion: 5.7.14
-    created: 2019-01-25T11:41:26.938678306+08:00
+    created: 2019-02-12T13:46:20.652520803+08:00
     description: Fast, reliable, scalable, and easy to use open-source relational
       database system.
     digest: 63a1ffafcb6d017be2760646997584872455dd3e2b5b2c7ca9fececba6c08e39
@@ -27,7 +27,7 @@ entries:
     version: 0.13.1
   nginx-ingress:
   - appVersion: 0.21.0
-    created: 2019-01-25T11:41:26.940302379+08:00
+    created: 2019-02-12T13:46:20.653159056+08:00
     description: An nginx Ingress controller that uses ConfigMap to store the nginx
       configuration.
     digest: f9a5198017377cf0a2bbb75c59edfddc7f6e8a6e994f0d072575c0659c7fa17c
@@ -50,7 +50,7 @@ entries:
     version: 1.1.5
   wordpress:
   - appVersion: 5.0.3
-    created: 2019-01-25T11:41:26.942774306+08:00
+    created: 2019-02-12T13:46:20.654209588+08:00
     description: Web publishing platform for building blogs and websites.
     digest: 3fb906523d6079b10438ab0b60a5c7e3dccde8c2ab51fb67e1a2f4cf57ba169b
     engine: gotpl
@@ -73,4 +73,14 @@ entries:
     urls:
     - wordpress-5.1.2.tgz
     version: 5.1.2
-generated: 2019-01-25T11:41:26.934551708+08:00
+  zb-web:
+  - apiVersion: v1
+    appVersion: "1.0"
+    created: 2019-02-12T13:46:20.655307671+08:00
+    description: nginx
+    digest: 572239122b1c71c25292a759573e1bb237d1c3bbfe2907c456a6d71545f24609
+    name: zb-web
+    urls:
+    - zb-web-0.1.0.tgz
+    version: 0.1.0
+generated: 2019-02-12T13:46:20.651852333+08:00
