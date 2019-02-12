@@ -5,8 +5,6 @@ image:
   tag: test
   pullPolicy: Always
 
-namespace: "default"
-
 configmap:
   name: "zb-web-nginx-conf"
 

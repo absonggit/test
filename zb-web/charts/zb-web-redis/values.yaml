@@ -5,7 +5,6 @@ image:
   tag: test
   pullPolicy: Always 
 
-namespace: "default"
 
 service:
   name: "zb-web-redis"

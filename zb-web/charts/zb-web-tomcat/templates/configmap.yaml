@@ -2,7 +2,6 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: {{ .Values.configmap.name }}
-  namespace: {{ .Values.namespace }} 
 data:
   config.properties: "# \\u6bcf\\u65e5\\u63d0\\u6b3e\\u6b21\\u6570\nCashoutTodayCount=2\n\n#
     \\u6bcf\\u65e5\\u63d0\\u6b3e\\u989d\\u5ea6\\uff1b\nCashoutTodayAmount=500000\nCashoutSplitAmount=50000\nCRC_KEY=5eiYOobBCkbLAK4ijt4RwNMqXXhBrgioV2/tCtt+7kvQ4wmkeJ5diFZuV9Q2oo8ZFSHXXQcn2+SN4j/hKgDjMA==\n\nPAY_ONLINE_KEY=udsEL7bP/f/sufCbAUc+shAfvTciJH0FPahdZlWZfgRiOCva32sIs1+4q//zqBO9vaRFMbRGXplOwdZJlU1MxEZBvQ3mrXNrCZrtmQHDSHCouasLnH6c4yfJLjFAVr3QjZsccuM5XfZF+KoYM8H9bnFQ39CeLlp6F63y5UU7qpR7xDi9BST9x9Hpxe31Thxd\n\n#
