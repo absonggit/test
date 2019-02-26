@@ -10,7 +10,7 @@ RUN cp /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 RUN yum install -y apr-devel openssl-devel wget make gcc tar expat-devel 
 
 RUN wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_bin.tar.gz
-RUN tar -zxvf openjdk-11.0.2_linux-x64_bin.tar.gz-C /usr/local \
+RUN tar -zxvf openjdk-11.0.2_linux-x64_bin.tar.gz -C /usr/local \
  && mv /usr/local/jdk-11.0.2 /usr/local/java
 
 RUN wget http://mirror.rise.ph/apache/tomcat/tomcat-8/v8.5.38/bin/apache-tomcat-8.5.38.tar.gz
