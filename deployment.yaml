@@ -1,6 +1,6 @@
 kind: Deployment
 metadata:
-  name: nginx-deployment
+  name: nginx
 spec:
   replicas: 1
   template:
