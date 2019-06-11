@@ -14,8 +14,8 @@ RUN tar -zxvf openjdk-11.0.2_linux-x64_bin.tar.gz -C /usr/local \
  && mv /usr/local/jdk-11.0.2 /usr/local/java
 
 RUN wget http://mirror.rise.ph/apache/tomcat/tomcat-8/v8.5.42/bin/apache-tomcat-8.5.42.tar.gz
-RUN tar -zxvf apache-tomcat-8.5.38.tar.gz -C /usr/local \
- && mv /usr/local/apache-tomcat-8.5.38 /usr/local/tomcat
+RUN tar -zxvf apache-tomcat-8.5.42.tar.gz -C /usr/local \
+ && mv /usr/local/apache-tomcat-8.5.42 /usr/local/tomcat
 
 RUN tar -zxvf /usr/local/tomcat/bin/tomcat-native.tar.gz -C /usr/local/tomcat/bin/ \
  && cd /usr/local/tomcat/bin/tomcat-native-1.2.21-src/native \
