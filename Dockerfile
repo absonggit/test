@@ -13,7 +13,7 @@ RUN wget https://download.java.net/java/GA/jdk11/9/GPL/openjdk-11.0.2_linux-x64_
 RUN tar -zxvf openjdk-11.0.2_linux-x64_bin.tar.gz -C /usr/local \
  && mv /usr/local/jdk-11.0.2 /usr/local/java
 
-RUN wget http://mirror.rise.ph/apache/tomcat/tomcat-8/v8.5.38/bin/apache-tomcat-8.5.38.tar.gz
+RUN wget http://mirror.rise.ph/apache/tomcat/tomcat-8/v8.5.42/bin/apache-tomcat-8.5.42.tar.gz
 RUN tar -zxvf apache-tomcat-8.5.38.tar.gz -C /usr/local \
  && mv /usr/local/apache-tomcat-8.5.38 /usr/local/tomcat
 
