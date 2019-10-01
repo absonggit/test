@@ -1,4 +1,5 @@
 kind: Deployment
+
 metadata:
   name: nginx
 spec:
