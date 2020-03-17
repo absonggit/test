@@ -52,5 +52,5 @@ data:
         server zb-web-tomcat:8080;
     }
     upstream zb_web_api {
-        server 220.241.124.160:15002;
+        server 192.168.1.123:15002;
     }
