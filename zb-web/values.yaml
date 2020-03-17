@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: 69.172.86.202/rancher/zb-web-nginx
+  repository: 192.168.1.123/rancher/zb-web-nginx
   tag: test
   pullPolicy: Always
 
