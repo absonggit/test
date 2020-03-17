@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: 69.172.86.202/rancher/zb-web-redis
+  repository: 192.168.1.123/rancher/zb-web-redis
   tag: test
   pullPolicy: Always 
 
