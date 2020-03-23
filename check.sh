@@ -19,7 +19,12 @@ netstat_check () {
 }
 ip_check () {
     echo "外网IP:$(curl -s ip.sb)"
-    echo "内网IP:$(ifconfig| grep inet | grep -v inet6 | awk -F"[ :]+" '$4!="127.0.0.1"{print $4}')"
+    if [[ $(awk -F"[ .]" '{print $4}' /etc/redhat-release) == 7 ]]
+    then
+        echo  "内网IP:$(ifconfig| grep inet | grep -v inet6 | awk '$2!="127.0.0.1"{print $2}')"
+    else
+        echo "内网IP:$(ifconfig| grep inet | grep -v inet6 | awk -F"[ :]+" '$4!="127.0.0.1"{print $4}')"
+    fi
     echo "-----------------------"
 }
 hosts_check () {
