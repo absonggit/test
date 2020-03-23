@@ -19,7 +19,7 @@ netstat_check () {
 }
 ip_check () {
     echo "外网IP:$(curl -s ip.sb)"
-    echo "内网IP:$(ifconfig| grep inet | awk -F"[ :]+" '$4!="127.0.0.1"{print $4}')"
+    echo "内网IP:$(ifconfig| grep inet | grep -v inet6 | awk -F"[ :]+" '$4!="127.0.0.1"{print $4}')"
     echo "-----------------------"
 }
 hosts_check () {
