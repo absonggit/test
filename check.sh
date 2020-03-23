@@ -43,7 +43,7 @@ hosts_check () {
 audit_check () {
     echo "【审计检测】"
     echo "-----------------------"
-    grep -v LOGIN /var/log/audit/audit.log|grep exe | awk '{print $1,$5,$10,$NF}' | sort | uniq
+    grep -v LOGIN /var/log/audit/audit.log | awk '{print $1,$5,$10,$NF}' | sort | uniq |grep exe
     echo
 }
 conn_check () {
