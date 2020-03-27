@@ -4,7 +4,7 @@ netstat_check () {
     data=($(netstat -ntlup | awk -F"[ :]+" 'NR>2&&$4=="0.0.0.0"&&$5!="68"&&$5!="123"{print $9":"$5}'|xargs))
     no_rules=""
     echo
-    echo "【对外放开的服务端口】"
+    echo "【对外放开的服务端口及防火墙规则】"
     echo "------------------------------------"
     for i in ${data[@]}
     do
