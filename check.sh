@@ -33,11 +33,11 @@ ip_check () {
 hosts_check () {
     echo "【tcp_wrappers】"
     echo "-----------------------"
-    echo "【hosts.allow】"
+    echo "hosts.allow"
     grep -v "^#" /etc/hosts.allow || {
         echo "none"
     }
-    echo "【hosts.deny】"
+    echo "hosts.deny"
     grep -v "^#" /etc/hosts.deny || {
         echo "none"
     }
