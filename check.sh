@@ -1,5 +1,4 @@
 #!/bin/bash
-
 netstat_check () {
     data=($(netstat -ntlup | awk -F"[ :]+" 'NR>2&&$4=="0.0.0.0"&&$5!="68"&&$5!="123"{print $9":"$5}'|xargs))
     no_rules=""
@@ -64,16 +63,17 @@ services_check () {
     echo
     echo "【虚拟主机】"
     echo "------------------------------------"
-    printf "%-15s %-15s %-15s\n" 状态 端口 配置文件 
+    printf "%-15s %-15s %-30s %-15s\n" 状态 端口 配置文件 Server_Name
     for i in ${array[@]}
     do
         port=$(echo $i | cut -d":" -f 2)
         conf=$(echo $i | cut -d":" -f 1)
+        server_name=$(grep server_name /usr/local/nginx/conf/vhost/${conf} |awk -F"[ ;]+" '{for(i=3;i<NF;i++)printf("%s",$i);print ""}')
         if netstat -ntlup | grep $port &> /dev/null
         then
-            printf "%-15s %-15s %-15s\n" 已监听 ${port} ${conf}
+            printf "%-15s %-10s %-30s %-15s\n" 已监听 ${port} ${conf} ${server_name}
         else
-            printf "%-15s %-15s %-15s\n" 未监听 ${port} ${conf}
+            printf "%-15s %-10s %-30s %-15s\n" 未监听 ${port} ${conf} ${server_name}
         fi
     done
 }
@@ -100,4 +100,3 @@ audit_check
 conn_check
 services_check
 items_check
-
