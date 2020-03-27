@@ -51,9 +51,51 @@ conn_check () {
     echo "-----------------------"
     netstat -ntlupa| awk -F"[ :/]+" '$8=="ESTABLISHED"&&$6!="127.0.0.1" &&$10!="php-fpm"&&$10!="filebeat"&&$10!="sshd"&&$10!="redis-server"&&$10!="AliYunDun"&&$10!="nginx"&&$7!=443&&$7!=3306&&$7!=6379{print $0}'
 }
+services_check () {
+    array=($(grep -r listen /usr/local/nginx/conf/vhost | awk -F"[ :;]+" '
+    function basename(file) {
+        sub(".*/", "", file)
+        return file
+     }
+    $2!="#listen" {print basename($1)":"$3}'|xargs))
+    echo
+    echo "【虚拟主机】"
+    echo "------------------------------------"
+    printf "%-15s %-15s %-15s\n" 状态 端口 配置文件 
+    for i in ${array[@]}
+    do
+        port=$(echo $i | cut -d":" -f 2)
+        conf=$(echo $i | cut -d":" -f 1)
+        if netstat -ntlup | grep $port &> /dev/null
+        then
+            printf "%-15s %-15s %-15s\n" 已监听 ${port} ${conf}
+        else
+            printf "%-15s %-15s %-15s\n" 未监听 ${port} ${conf}
+        fi
+    done
+}
+items_check () {
+    echo
+    echo "【项目检测】"
+    echo "------------------------------------"
+    for path in $(find /home/wwwroot -mindepth 1 -maxdepth 1 -type d)
+    do
+        printf "%-15s %-30s\n" 文件数 项目目录
+        file_count=$(find $path -path "$path/runtime" -prune -o -type f -print | wc -l)
+        printf "%-10s %-30s\n" ${file_count} $path
+        echo "24小时内修改过的文件"
+        find $path -path "$path/runtime" -prune -o -mtime 0 -type f -print | grep -v "png$" || {
+            echo none
+        }
+        echo "------------------------------------"
+    done
+}
 ip_check
 iptables_check
 netstat_check
 hosts_check
 audit_check
 conn_check
+services_check
+items_check
+
