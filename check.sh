@@ -1,22 +1,25 @@
 #!/bin/bash
 
-iptables_check () {
-    echo "【排查防火墙规则】"
-    echo "-----------------------"
-    if iptables -nL INPUT | awk 'NR>2&&$7!=""{print $0}' | egrep -v "RELATED|22|443|80|3306|icmp"
-    then
-        echo "请检查确认上述防火墙规则"
-    else
-        echo "防火墙无异常规则"
-    fi
-    echo
-}
 netstat_check () {
-    echo "【对外开放的端口及服务】"
-    echo "-----------------------"
-    netstat -ntlup | awk -F"[ :]+" 'BEGIN{print "PID/Service\t\tPort"}NR>2&&$4=="0.0.0.0"&&$5!="68"&&$5!="123"{print $9"\t\t"$5}'
+    data=($(netstat -ntlup | awk -F"[ :]+" 'NR>2&&$4=="0.0.0.0"&&$5!="68"&&$5!="123"{print $9":"$5}'|xargs))
+    no_rules=""
     echo
+    echo "【对外放开的服务端口】"
+    echo "------------------------------------"
+    for i in ${data[@]}
+    do
+        serv=$(echo $i| cut -d":" -f1)
+        port=$(echo $i| cut -d":" -f2)
+        if iptables -nL INPUT | awk 'NR>2&&$7!=""{print $0}' | grep $port
+        then
+           :
+        else
+            no_rules="${no_rules}端口:${port}    未添加防火墙规则    $serv\n"
+        fi
+    done
+    echo -e $no_rules
 }
+
 ip_check () {
     echo "外网IP:$(curl -s ip.sb)"
     if [[ $(awk -F"[ .]" '{print $4}' /etc/redhat-release) == 7 ]]
@@ -91,7 +94,6 @@ items_check () {
     done
 }
 ip_check
-iptables_check
 netstat_check
 hosts_check
 audit_check
