@@ -68,7 +68,7 @@ services_check () {
     do
         port=$(echo $i | cut -d":" -f 2)
         conf=$(echo $i | cut -d":" -f 1)
-        server_name=$(grep server_name /usr/local/nginx/conf/vhost/${conf} |awk -F"[ ;]+" '{for(i=3;i<NF;i++)printf("%s",$i);print ""}')
+        server_name=$(grep server_name /usr/local/nginx/conf/vhost/${conf} |awk -F"[ ;]+" '{for(i=3;i<NF;i++)printf("%s ",$i);print ""}')
         if netstat -ntlup | grep $port &> /dev/null
         then
             printf "%-15s %-10s %-30s %-15s\n" 已监听 ${port} ${conf} ${server_name}
