@@ -3,7 +3,7 @@
 iptables_check () {
     echo "【排查防火墙规则】"
     echo "-----------------------"
-    if iptables -L INPUT | awk 'NR>2&&$7!=""{print $0}' | egrep -v "RELATED|ssh|http|mysql|echo"
+    if iptables -nL INPUT | awk 'NR>2&&$7!=""{print $0}' | egrep -v "RELATED|22|443|80|3306|icmp"
     then
         echo "请检查确认上述防火墙规则"
     else
