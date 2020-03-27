@@ -31,13 +31,13 @@ ip_check () {
     echo "-----------------------"
 }
 hosts_check () {
-    echo "【hosts.allow】"
+    echo "【tcp_wrappers】"
     echo "-----------------------"
+    echo "【hosts.allow】"
     grep -v "^#" /etc/hosts.allow || {
         echo "none"
     }
     echo "【hosts.deny】"
-    echo "-----------------------"
     grep -v "^#" /etc/hosts.deny || {
         echo "none"
     }
