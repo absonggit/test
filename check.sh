@@ -54,7 +54,7 @@ conn_check () {
     netstat -ntlupa| awk -F"[ :/]+" '$8=="ESTABLISHED"&&$6!="127.0.0.1" &&$10!="php-fpm"&&$10!="filebeat"&&$10!="sshd"&&$10!="redis-server"&&$10!="AliYunDun"&&$10!="nginx"&&$7!=443&&$7!=3306&&$7!=6379{print $0}'
 }
 services_check () {
-    array=($(grep -r listen /usr/local/nginx/conf/vhost | awk -F"[ :;]+" '
+    array=($(egrep -r "^[[:space:]]+listen" /usr/local/nginx/conf/vhost | awk -F"[ :;]+" '
     function basename(file) {
         sub(".*/", "", file)
         return file
