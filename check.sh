@@ -87,7 +87,7 @@ items_check () {
         file_count=$(find $path -path "$path/runtime" -prune -o -type f -print | wc -l)
         printf "%-10s %-30s\n" ${file_count} $path
         echo "24小时内修改过的文件"
-        find $path ! -path "$path/data/Runtime/*" ! -path "$path/runtime/*" ! -path "$path/data/runtime/*" -mtime 0 -type f  ! -name "*.png" ! -name "*.log" -print || {
+        find $path ! -path "$path/data/Runtime/*" ! -path "$path/runtime/*" ! -path "$path/data/runtime/*" -mtime 0 -type f  ! -name "*.png" -print || {
             echo none
         }
         echo "------------------------------------"
