@@ -97,7 +97,7 @@ root_file_check () {
     echo
     echo "【文件系统24小时内的文件修改】"
     echo "------------------------------------"
-    find / ! -path "/var/cache/man/*" ! -path "/usr/local/aegis/*" ! -path "/usr/local/share/aliyun-assist/*" ! -path "/var/lib/filebeat/*" ! -path "/var/run/*" ! -path "/tmp/sess*" ! -path "/usr/local/php/var/log/*" ! -path "/home/wwwlogs/*" ! -path "/home/wwwroot/*" ! -path "/var/log/*" ! -path "/proc/32737" ! -path "/proc/*" ! -path "/sys/*" -type f -mtime 0
+    find / ! -path "/run/systemd/*" ! -path "/var/cache/man/*" ! -path "/usr/local/aegis/*" ! -path "/usr/local/share/aliyun-assist/*" ! -path "/var/lib/filebeat/*" ! -path "/var/run/*" ! -path "/tmp/sess*" ! -path "/usr/local/php/var/log/*" ! -path "/home/wwwlogs/*" ! -path "/home/wwwroot/*" ! -path "/var/log/*" ! -path "/proc/32737" ! -path "/proc/*" ! -path "/sys/*" -type f -mtime 0
 }
 ip_check
 netstat_check
