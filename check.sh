@@ -110,6 +110,8 @@ root_file_check () {
     ! -path "/var/lib/rpm/*" \
     ! -path "/var/cache/yum/*" \
     ! -path "/var/lib/filebeat/*" \
+    ! -path "/var/cache/man/*" \
+    ! -path "/run/systemd/*" \
     -type f -mtime 0
 }
 ip_check
