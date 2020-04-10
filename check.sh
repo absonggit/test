@@ -123,4 +123,5 @@ conn_check
 services_check
 items_check
 root_file_check
+echo "【shell进程检测】"
 ps aux | egrep -v "sshd|pts|filebeat|flush" | grep sh
