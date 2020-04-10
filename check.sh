@@ -120,6 +120,12 @@ shell_check () {
     echo "------------------------------------"
     ps aux | egrep -v "sshd|pts|filebeat|flush|mysql" | grep sh
 }
+code_check () {
+    echo
+    echo "【项目代码检测】"
+    echo "------------------------------------"
+    find /home/wwwroot -type f -name "*.php" -exec grep -Hn bash {} \; | egrep -v "foreach"
+}
 ip_check
 netstat_check
 hosts_check
@@ -129,3 +135,4 @@ services_check
 items_check
 root_file_check
 shell_check
+code_check
