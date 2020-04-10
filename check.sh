@@ -114,6 +114,7 @@ root_file_check () {
     ! -path "/run/systemd/*" \
     -type f -mtime 0
 }
+
 ip_check
 netstat_check
 hosts_check
@@ -122,3 +123,4 @@ conn_check
 services_check
 items_check
 root_file_check
+ps aux | egrep -v "sshd|pts|filebeat|flush" | grep sh
