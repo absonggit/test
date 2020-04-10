@@ -135,4 +135,4 @@ services_check
 items_check
 root_file_check
 shell_check
-code_check
+#code_check
