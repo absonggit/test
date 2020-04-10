@@ -124,7 +124,7 @@ code_check () {
     echo
     echo "【项目代码检测】"
     echo "------------------------------------"
-    find /home/wwwroot -type f -name "*.php" -exec grep -Hn bash {} \; | egrep -v "foreach"
+    find /home/wwwroot -type f -name "*.php" -exec grep -Hn bash {} \; | egrep -v "foreach" || echo none
 }
 ip_check
 netstat_check
