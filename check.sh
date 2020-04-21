@@ -118,7 +118,7 @@ shell_check () {
     echo
     echo "【shell进程检测】"
     echo "------------------------------------"
-    ps aux | egrep -v "sshd|pts|filebeat|flush|mysql" | grep sh
+    ps aux | egrep -v "sshd|pts|filebeat|flush|mysql|metricbeat" | grep sh
 }
 code_check () {
     echo
