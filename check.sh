@@ -77,6 +77,32 @@ services_check () {
         fi
     done
 }
+
+bt_services_check () {
+    array=($(egrep -r "^[[:space:]]+listen" /www/server/panel/vhost/nginx | awk -F"[ :;]+" '
+    function basename(file) {
+        sub(".*/", "", file)
+        return file
+     }
+    $2!="#listen" {print basename($1)":"$3}'|xargs))
+    echo
+    echo "【虚拟主机】"
+    echo "------------------------------------"
+    printf "%-15s %-15s %-30s %-15s\n" 状态 端口 配置文件 Server_Name
+    for i in ${array[@]}
+    do
+        port=$(echo $i | cut -d":" -f 2)
+        conf=$(echo $i | cut -d":" -f 1)
+        server_name=$(egrep "^[[:space:]]+server_name" /www/server/panel/vhost/nginx/${conf} |awk -F"[ ;]+" '{for(i=3;i<NF;i++)printf("%s|",$i);print ""}')
+        if netstat -ntlup | grep $port &> /dev/null
+        then
+            printf "%-15s %-10s %-30s %-15s\n" 已监听 ${port} ${conf} ${server_name}
+        else
+            printf "%-15s %-10s %-30s %-15s\n" 未监听 ${port} ${conf} ${server_name}
+        fi
+    done
+}
+
 items_check () {
     echo
     echo "【项目检测】"
@@ -93,11 +119,30 @@ items_check () {
         echo "------------------------------------"
     done
 }
+
+bt_items_check () {
+    echo
+    echo "【项目检测】"
+    echo "------------------------------------"
+    for path in $(find /www/wwwroot -mindepth 1 -maxdepth 1 -type d)
+    do
+        printf "%-15s %-30s\n" 文件数 项目目录
+        file_count=$(find $path -path "$path/runtime" -prune -o -type f -print | wc -l)
+        printf "%-10s %-30s\n" ${file_count} $path
+        echo "24小时内修改过的文件"
+        find $path ! -path "$path/resources/*" ! -path "$path/data/Runtime/*" ! -path "$path/runtime/*" ! -path "$path/data/runtime/*" -mtime 0 -type f  ! -name "*.png" -print || {
+            echo none
+        }
+        echo "------------------------------------"
+    done
+}
+
 root_file_check () {
     echo
     echo "【文件系统24小时内的文件修改】"
     echo "------------------------------------"
     find / \
+    ! -path "/www/wwwroot/*" \
     ! -path "/home/wwwroot/*" \
     ! -path "/tmp/sess_*" \
     ! -path "/proc/*" \
@@ -131,8 +176,14 @@ netstat_check
 hosts_check
 audit_check
 conn_check
-services_check
-items_check
+if [ -e /bin/bt ]
+then
+    bt_services_check
+    bt_items_check
+else
+    services_check
+    items_check 
+fi
 root_file_check
 shell_check
 #code_check
