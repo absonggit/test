@@ -1,6 +1,11 @@
 #!/bin/bash
 netstat_check () {
-    data=($(netstat -ntlup | awk -F"[ :]+" 'NR>2&&$4=="0.0.0.0"&&$5!="68"&&$5!="123"{print $9":"$5}'|xargs))
+    if firewall-cmd --state &> /dev/null
+    then
+        data=($(firewall-cmd --list-port | awk -F "/tcp" '{for( i=1; i<=NF; i++) print $i}' | xargs))
+    else
+        data=($(netstat -ntlup | awk -F"[ :]+" 'NR>2&&$4=="0.0.0.0"&&$5!="68"&&$5!="123"{print $9":"$5}'|xargs))
+    fi
     no_rules=""
     echo
     echo "【对外放开的服务端口及防火墙规则】"
