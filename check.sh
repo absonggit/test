@@ -9,7 +9,10 @@ netstat_check () {
     do
         serv=$(echo $i| cut -d":" -f1)
         port=$(echo $i| cut -d":" -f2)
-        if iptables -nL INPUT | awk 'NR>2&&$7!=""{print $0}' | grep $port
+        if firewall-cmd --list-rich-rules | grep $port 2> /dev/null
+        then
+           :
+        elif iptables -nL INPUT | awk 'NR>2&&$7!=""{print $0}' | grep $port
         then
            :
         else
